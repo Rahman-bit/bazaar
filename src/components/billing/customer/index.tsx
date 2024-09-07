@@ -22,14 +22,15 @@ const MyCustomer = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-      axios.get('http://localhost:8000/createcustomer').then((res: any) => {
+      axios.get('http://localhost:3000/createlead').then((res: any) => {
       const customer = res.data;
       setData(customer);
+      console.log("Customre:", customer)
     });
   },[])
 
   useEffect(() => {
-    axios.get('http://localhost:8000/createcustomer').then((res: any) => {
+    axios.get('http://localhost:3000/createlead').then((res: any) => {
     const customer = res.data;
     setData(customer);
   });
@@ -59,9 +60,21 @@ const MyCustomer = () => {
     navigate(`/customer/update/${id}`)
   }
   const handleDeleteCustomer = (journey: any, id: any) => {
-    setChangeModalShow(true)
-    setSelectedJourney(journey)
-    setselectedId(id)
+    // axios.delete(`http://localhost:3000/createlead/${id}`, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   }
+    // })
+    //   .then(response => {
+    //     console.log("Lead deleted:", response.data);
+         
+    //   })
+    //   .catch(error => {
+    //     console.error("There was an error deleting the lead:", error);
+    //   });
+      setChangeModalShow(true)
+      setSelectedJourney(journey)
+      setselectedId(id)
   }
 
   const handleChangeClose = () => setChangeModalShow(false);
@@ -97,7 +110,7 @@ const MyCustomer = () => {
               data?.map((item: any, index: any) => <tr key={index + 1}>
                 <td>{index + 1}</td>
                 <td>{item?.createdDate}</td>
-                <td>{item.customerFirstName} {item.customerLastName} </td>
+                <td>{item.customerFirstName} {` ${item.customerLastName}`} </td>
                 <td>{item.customerEmail}</td>
                 <td>{item.customerMobile}</td> 
                 <td>

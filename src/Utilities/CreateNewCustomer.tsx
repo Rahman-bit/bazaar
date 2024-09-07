@@ -15,17 +15,27 @@ import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
 import CustomToast from './CustomToast';  
 
+export interface NewLead {
+  id : string;
+  customerFirstName : string;
+  customerLastName : string;
+  customerEmail : string;
+  customerMobile : number;
+  country : string;
+  state : string;
+  city : string;
+  zipcode : number;
+}
+
 const CreateNewCustomer = (props: any) => {
 
   const [loading, setLoading] = React.useState(false)
   const [validated, setValidated] = React.useState(false);
   const [statusCode, setStatusCode] = useState("" as any) 
-  const [showToast, setshowToast] = useState(false) 
-  
+  const [showToast, setshowToast] = useState(false)
 
-  const [createNewCustomer, setCreateNewCustomer ] = React.useState({
-    id: `HB${generateUniqueId()}`,
-    createdDate: generateCurrentDateAndTime(),
+  const [createNewCustomer, setCreateNewCustomer ] = React.useState<NewLead>({
+    
     customerFirstName: "",
     customerLastName: "",
     customerEmail: "",
@@ -73,15 +83,23 @@ const CreateNewCustomer = (props: any) => {
       event.stopPropagation();
     } else {
      props?.closeModal(false);
-      axios.post(`http://localhost:8000/createcustomer`, createNewCustomer).then((response) => {
+     console.log("createNewCustomer Id : ", createNewCustomer)
+      axios.post(`http://localhost:3000/createlead`, JSON.stringify(createNewCustomer),{
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((response) => {
          
       if (response.status === 200) {
+        console.log("Manggose api Database status 200:", response.data)
         setStatusCode("success")
         setshowToast(true)
       } else if (response.status === 201) { 
+        console.log("Manggose api Database status 201:", response.data)
         setStatusCode("success")
         setshowToast(true)
       } else { 
+        console.log("Manggose api Database status success:", response.data)
         setStatusCode("success")
         setshowToast(true)
       }
@@ -89,13 +107,13 @@ const CreateNewCustomer = (props: any) => {
       setStatusCode("danger")
       setshowToast(true)
       console.log("failed with", error)
-    })
- 
-      
+    })      
     }
      
   }
  
+  console.log("Use create customer create colling")
+
   useEffect(() => {
   
     return () => {

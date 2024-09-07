@@ -50,9 +50,10 @@ const UpdateCustomer = (props: any) => {
     customerView,
 } = navigationURL;
 
+// id: `HB${generateUniqueId()}`,
+//     createdDate: generateCurrentDateAndTime(),
+
   const [createNewCustomer, setCreateNewCustomer ] = React.useState({
-    id: `HB${generateUniqueId()}`,
-    createdDate: generateCurrentDateAndTime(),
     customerFirstName: "",
     customerLastName: "",
     customerEmail: "",
@@ -100,7 +101,12 @@ const UpdateCustomer = (props: any) => {
       event.stopPropagation();
     } else {
     //  props?.closeModal(false);
-      axios.put(`http://localhost:8000/createcustomer/${id}`, createNewCustomer).then((response) => {
+
+      axios.put(`http://localhost:3000/createlead/${id}`, createNewCustomer, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
          
       if (response.status === 200) {
         setStatusCode("success")
@@ -123,7 +129,7 @@ const UpdateCustomer = (props: any) => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/createcustomer/${id}`).then((res: any) => {
+    axios.get(`http://localhost:3000/createlead/${id}`).then((res: any) => {
     const customer = res.data;
     setCreateNewCustomer(customer);
   });
