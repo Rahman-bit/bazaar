@@ -49,7 +49,7 @@ const generateUniqueId = () => {
 const uniqueId = generateUniqueId();
 
 const [createLead, setCreateLead] = useState({
-    id: `HB${uniqueId}`,
+    uniquNumber : `HB${uniqueId}`,
     createdDate: new Date().toLocaleString(),
     leadTitle: "",
     paymentmode: "",
@@ -96,6 +96,8 @@ const [createLead, setCreateLead] = useState({
     shortNote: "",
     hotelPreferences: "",
     leadstatus: "All", 
+    invoice: [],
+    itinerary: []
 })
 
 const { 

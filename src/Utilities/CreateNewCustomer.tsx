@@ -84,7 +84,7 @@ const CreateNewCustomer = (props: any) => {
     } else {
      props?.closeModal(false);
      console.log("createNewCustomer Id : ", createNewCustomer)
-      axios.post(`http://localhost:3000/createlead`, JSON.stringify(createNewCustomer),{
+      axios.post(`http://localhost:3000/newcustomer`, JSON.stringify(createNewCustomer),{
         headers: {
           'Content-Type': 'application/json',
         }

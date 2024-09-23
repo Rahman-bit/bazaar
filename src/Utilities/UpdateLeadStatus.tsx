@@ -116,7 +116,8 @@ useEffect(() => {
           <Button variant="primary" onClick={() => handleRemoveLead(props?.id)}>
             Delete
           </Button>
-        </Modal.Footer> </>: <></>}
+        </Modal.Footer> </>: <></>
+        }
     </Modal>
     </>
   )

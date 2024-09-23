@@ -22,7 +22,7 @@ const MyCustomer = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-      axios.get('http://localhost:3000/createlead').then((res: any) => {
+      axios.get('http://localhost:3000/newcustomer').then((res: any) => {
       const customer = res.data;
       setData(customer);
       console.log("Customre:", customer)
@@ -30,7 +30,7 @@ const MyCustomer = () => {
   },[])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/createlead').then((res: any) => {
+    axios.get('http://localhost:3000/newcustomer').then((res: any) => {
     const customer = res.data;
     setData(customer);
   });

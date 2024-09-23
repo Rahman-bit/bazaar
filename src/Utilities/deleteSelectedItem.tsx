@@ -15,7 +15,7 @@ const handleDelete = async (id: any, journey: any) => {
     console.log(id, journey)
     props?.closeModal(false);
     try {
-        const response = await axios.delete(`http://localhost:3000/createlead/${id}`);
+        const response = await axios.delete(`http://localhost:3000/newcustomer/${id}`);
         console.log('Resource deleted:', response.data);
         if (response.status === 200) {
           setStatusCode("success")

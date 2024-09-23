@@ -102,7 +102,7 @@ const UpdateCustomer = (props: any) => {
     } else {
     //  props?.closeModal(false);
 
-      axios.put(`http://localhost:3000/createlead/${id}`, createNewCustomer, {
+      axios.put(`http://localhost:3000/newcustomer/${id}`, createNewCustomer, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -129,7 +129,7 @@ const UpdateCustomer = (props: any) => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/createlead/${id}`).then((res: any) => {
+    axios.get(`http://localhost:3000/newcustomer/${id}`).then((res: any) => {
     const customer = res.data;
     setCreateNewCustomer(customer);
   });
